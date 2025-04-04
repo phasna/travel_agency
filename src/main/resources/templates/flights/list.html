@@ -5,17 +5,17 @@
     <div th:replace="~{layout :: nav}"></div>
 
     <div class="container mt-4" id="content">
-      <h2>Flight List</h2>
+      <h2>Liste des Vols</h2>
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Flight Number</th>
-              <th>Airplane</th>
-              <th>Departure City</th>
-              <th>Arrival City</th>
-              <th>Departure Time</th>
-              <th>Arrival Time</th>
+              <th>Numéro de Vol</th>
+              <th>Avion</th>
+              <th>Ville de Départ</th>
+              <th>Ville d'Arrivée</th>
+              <th>Heure de Départ</th>
+              <th>Heure d'Arrivée</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -35,20 +35,20 @@
                 <a
                   th:href="@{/flights/edit/{number}(number=${flight.flightNumber})}"
                   class="btn btn-primary btn-sm"
-                  >Edit</a
+                  >Modifier</a
                 >
                 <a
                   th:href="@{/flights/delete/{number}(number=${flight.flightNumber})}"
                   class="btn btn-danger btn-sm"
-                  onclick="return confirm('Are you sure?')"
-                  >Delete</a
+                  onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce vol ?')"
+                  >Supprimer</a
                 >
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <a href="/flights/new" class="btn btn-success">Add New Flight</a>
+      <a href="/flights/new" class="btn btn-success">Ajouter un Nouveau Vol</a>
     </div>
 
     <div th:replace="~{layout :: scripts}"></div>

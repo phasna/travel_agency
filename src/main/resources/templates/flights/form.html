@@ -8,7 +8,7 @@
 
     <div class="container mt-4" id="content">
       <h2
-        th:text="${flight.flightNumber == null ? 'Add New Flight' : 'Edit Flight'}"
+        th:text="${flight.flightNumber == null ? 'Ajouter un Nouveau Vol' : 'Modifier le Vol'}"
       ></h2>
 
       <form
@@ -25,7 +25,7 @@
         />
 
         <div class="mb-3">
-          <label for="flightNumber" class="form-label">Flight Number</label>
+          <label for="flightNumber" class="form-label">Numéro de Vol</label>
           <input
             type="text"
             class="form-control"
@@ -37,14 +37,14 @@
         </div>
 
         <div class="mb-3">
-          <label for="airplane" class="form-label">Airplane</label>
+          <label for="airplane" class="form-label">Avion</label>
           <select
             class="form-select"
             id="airplane"
             th:field="*{airplane}"
             required
           >
-            <option value="">Select Airplane</option>
+            <option value="">Sélectionner un Avion</option>
             <option
               th:each="airplane : ${airplanes}"
               th:value="${airplane.id}"
@@ -54,14 +54,14 @@
         </div>
 
         <div class="mb-3">
-          <label for="departureCity" class="form-label">Departure City</label>
+          <label for="departureCity" class="form-label">Ville de Départ</label>
           <select
             class="form-select"
             id="departureCity"
             th:field="*{departureCity}"
             required
           >
-            <option value="">Select Departure City</option>
+            <option value="">Sélectionner une Ville de Départ</option>
             <option
               th:each="city : ${cities}"
               th:value="${city.id}"
@@ -71,14 +71,14 @@
         </div>
 
         <div class="mb-3">
-          <label for="arrivalCity" class="form-label">Arrival City</label>
+          <label for="arrivalCity" class="form-label">Ville d'Arrivée</label>
           <select
             class="form-select"
             id="arrivalCity"
             th:field="*{arrivalCity}"
             required
           >
-            <option value="">Select Arrival City</option>
+            <option value="">Sélectionner une Ville d'Arrivée</option>
             <option
               th:each="city : ${cities}"
               th:value="${city.id}"
@@ -88,7 +88,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="departureTime" class="form-label">Departure Time</label>
+          <label for="departureTime" class="form-label">Heure de Départ</label>
           <input
             type="datetime-local"
             class="form-control"
@@ -99,7 +99,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="arrivalTime" class="form-label">Arrival Time</label>
+          <label for="arrivalTime" class="form-label">Heure d'Arrivée</label>
           <input
             type="datetime-local"
             class="form-control"
@@ -109,8 +109,8 @@
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="/flights" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <a href="/flights" class="btn btn-secondary">Annuler</a>
       </form>
     </div>
 
