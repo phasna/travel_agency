@@ -6,46 +6,65 @@
   <body>
     <div th:replace="~{layout :: nav}"></div>
 
-    <div class="container mt-4" id="content">
-      <h2>Bienvenue dans la Gestion des Vols de l'Agence de Voyages</h2>
+    <div class="container mt-5" id="content">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h1 class="display-4 fw-bold">Bienvenue dans la Gestion des Vols</h1>
+        <p class="lead text-muted">Gérez facilement vos vols et réservations</p>
+      </div>
 
       <div class="row mt-4">
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Vols</h5>
-              <p class="card-text">Voir et gérer tous les vols</p>
-              <a href="/flights" class="btn btn-primary">Voir les Vols</a>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-plane fa-3x text-primary"></i>
+              </div>
+              <h5 class="card-title">Gestion des Vols</h5>
+              <p class="card-text">
+                Consultez et gérez l'ensemble de vos vols en quelques clics
+              </p>
+              <a href="/flights" class="btn btn-primary">
+                <i class="fas fa-list me-2"></i>Voir les Vols
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <div class="card-body">
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-search fa-3x text-primary"></i>
+              </div>
               <h5 class="card-title">Recherche par Avion</h5>
-              <p class="card-text">Trouver les vols par avion</p>
-              <a href="/flights/by-airplane" class="btn btn-primary"
-                >Rechercher</a
-              >
+              <p class="card-text">
+                Trouvez rapidement tous les vols d'un avion spécifique
+              </p>
+              <a href="/flights/by-airplane" class="btn btn-primary">
+                <i class="fas fa-plane me-2"></i>Rechercher
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="col-md-4 mb-3">
-          <div class="card">
-            <div class="card-body">
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-calendar-alt fa-3x text-primary"></i>
+              </div>
               <h5 class="card-title">Recherche par Date et Ville</h5>
-              <p class="card-text">Trouver les vols par date et ville</p>
-              <a href="/flights/by-date-city" class="btn btn-primary"
-                >Rechercher</a
-              >
+              <p class="card-text">Filtrez les vols par date et destination</p>
+              <a href="/flights/by-date-city" class="btn btn-primary">
+                <i class="fas fa-search me-2"></i>Rechercher
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+    <div th:replace="~{layout :: footer}"></div>
     <div th:replace="~{layout :: scripts}"></div>
   </body>
 </html>
