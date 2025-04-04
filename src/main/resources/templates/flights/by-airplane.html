@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{layout :: head}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div th:replace="~{layout :: nav}"></div>
+
+    <div class="container mt-4" id="content">
+      <h2>Flights by Airplane</h2>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <form id="airplaneForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="airplane" class="form-label">Select Airplane</label>
+              <select class="form-select" id="airplane" required>
+                <option value="">Choose an airplane</option>
+                <option
+                  th:each="airplane : ${airplanes}"
+                  th:value="${airplane.id}"
+                  th:text="${airplane.name}"
+                ></option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Show Flights</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="flightsList" style="display: none">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Flight Number</th>
+                <th>Departure City</th>
+                <th>Arrival City</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+              </tr>
+            </thead>
+            <tbody id="flightsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="~{layout :: scripts}"></div>
+
+    <script>
+      document
+        .getElementById("airplaneForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const airplaneId = document.getElementById("airplane").value;
+
+          if (!airplaneId) return;
+
+          fetch(`/api/flights/by-airplane/${airplaneId}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => response.json())
+            .then((flights) => {
+              const tbody = document.getElementById("flightsTableBody");
+              tbody.innerHTML = "";
+
+              flights.forEach((flight) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                        <td>${flight.flightNumber}</td>
+                        <td>${flight.departureCity.name}</td>
+                        <td>${flight.arrivalCity.name}</td>
+                        <td>${new Date(
+                          flight.departureTime
+                        ).toLocaleString()}</td>
+                        <td>${new Date(
+                          flight.arrivalTime
+                        ).toLocaleString()}</td>
+                    `;
+                tbody.appendChild(row);
+              });
+
+              document.getElementById("flightsList").style.display = "block";
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert(
+                "An error occurred while fetching flights. Please try again."
+              );
+            });
+        });
+    </script>
+  </body>
+</html>

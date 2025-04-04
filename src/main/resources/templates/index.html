@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{layout :: head}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div th:replace="~{layout :: nav}"></div>
+
+    <div class="container mt-4" id="content">
+      <h2>Welcome to Travel Agency Flight Management</h2>
+
+      <div class="row mt-4">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Flights</h5>
+              <p class="card-text">View and manage all flights</p>
+              <a href="/flights" class="btn btn-primary">Go to Flights</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Search by Airplane</h5>
+              <p class="card-text">Find flights by airplane</p>
+              <a href="/flights/by-airplane" class="btn btn-primary">Search</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Search by Date & City</h5>
+              <p class="card-text">Find flights by date and city</p>
+              <a href="/flights/by-date-city" class="btn btn-primary">Search</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="~{layout :: scripts}"></div>
+  </body>
+</html>

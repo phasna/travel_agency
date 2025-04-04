@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{layout :: head}"></head>
+  <body>
+    <div th:replace="~{layout :: nav}"></div>
+
+    <div class="container mt-4" id="content">
+      <h2>Flight List</h2>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Flight Number</th>
+              <th>Airplane</th>
+              <th>Departure City</th>
+              <th>Arrival City</th>
+              <th>Departure Time</th>
+              <th>Arrival Time</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="flight : ${flights}">
+              <td th:text="${flight.flightNumber}"></td>
+              <td th:text="${flight.airplane.name}"></td>
+              <td th:text="${flight.departureCity.name}"></td>
+              <td th:text="${flight.arrivalCity.name}"></td>
+              <td
+                th:text="${#temporals.format(flight.departureTime, 'dd/MM/yyyy HH:mm')}"
+              ></td>
+              <td
+                th:text="${#temporals.format(flight.arrivalTime, 'dd/MM/yyyy HH:mm')}"
+              ></td>
+              <td>
+                <a
+                  th:href="@{/flights/edit/{number}(number=${flight.flightNumber})}"
+                  class="btn btn-primary btn-sm"
+                  >Edit</a
+                >
+                <a
+                  th:href="@{/flights/delete/{number}(number=${flight.flightNumber})}"
+                  class="btn btn-danger btn-sm"
+                  onclick="return confirm('Are you sure?')"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <a href="/flights/new" class="btn btn-success">Add New Flight</a>
+    </div>
+
+    <div th:replace="~{layout :: scripts}"></div>
+  </body>
+</html>

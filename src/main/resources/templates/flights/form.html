@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{layout :: head}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div th:replace="~{layout :: nav}"></div>
+
+    <div class="container mt-4" id="content">
+      <h2
+        th:text="${flight.flightNumber == null ? 'Add New Flight' : 'Edit Flight'}"
+      ></h2>
+
+      <form
+        th:action="@{/flights/save}"
+        th:object="${flight}"
+        method="post"
+        class="needs-validation"
+        novalidate
+      >
+        <input
+          type="hidden"
+          th:field="*{flightNumber}"
+          th:if="${flight.flightNumber != null}"
+        />
+
+        <div class="mb-3">
+          <label for="flightNumber" class="form-label">Flight Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="flightNumber"
+            th:field="*{flightNumber}"
+            th:readonly="${flight.flightNumber != null}"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="airplane" class="form-label">Airplane</label>
+          <select
+            class="form-select"
+            id="airplane"
+            th:field="*{airplane}"
+            required
+          >
+            <option value="">Select Airplane</option>
+            <option
+              th:each="airplane : ${airplanes}"
+              th:value="${airplane.id}"
+              th:text="${airplane.name}"
+            ></option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="departureCity" class="form-label">Departure City</label>
+          <select
+            class="form-select"
+            id="departureCity"
+            th:field="*{departureCity}"
+            required
+          >
+            <option value="">Select Departure City</option>
+            <option
+              th:each="city : ${cities}"
+              th:value="${city.id}"
+              th:text="${city.name}"
+            ></option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="arrivalCity" class="form-label">Arrival City</label>
+          <select
+            class="form-select"
+            id="arrivalCity"
+            th:field="*{arrivalCity}"
+            required
+          >
+            <option value="">Select Arrival City</option>
+            <option
+              th:each="city : ${cities}"
+              th:value="${city.id}"
+              th:text="${city.name}"
+            ></option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="departureTime" class="form-label">Departure Time</label>
+          <input
+            type="datetime-local"
+            class="form-control"
+            id="departureTime"
+            th:field="*{departureTime}"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="arrivalTime" class="form-label">Arrival Time</label>
+          <input
+            type="datetime-local"
+            class="form-control"
+            id="arrivalTime"
+            th:field="*{arrivalTime}"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/flights" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+
+    <div th:replace="~{layout :: scripts}"></div>
+  </body>
+</html>
